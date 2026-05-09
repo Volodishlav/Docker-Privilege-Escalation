@@ -1,6 +1,6 @@
 # Docker-Privilege-Escalation
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project is a Proof of Concept (PoC) developed for cybersecurity research and educational purposes only. The author does not promote or endorse any illegal use of this tool and is not responsible for any misuse or damages caused by it.
 
