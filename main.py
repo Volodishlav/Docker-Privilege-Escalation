@@ -7,6 +7,7 @@ import sys
 
 def main():
 
+    # Parse args
     parser = argparse.ArgumentParser(description="DockerPE")
 
     parser.add_argument("--user")
@@ -19,6 +20,7 @@ def main():
     Nuser = args.newuser
     NuserPasswd = args.newpass
 
+    # Ask parameters
     if not Kuser:
         Kuser = input("Current user: ")
 
