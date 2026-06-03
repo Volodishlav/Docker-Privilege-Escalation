@@ -34,7 +34,7 @@ def main():
     tmpHash = subprocess.run(
     ["openssl", "passwd", "-6", NuserPasswd],
     capture_output=True,
-    text=True
+    text=True,
     check=True
     )
     HashedNuserPasswd = tmpHash.stdout.strip()
