@@ -4,7 +4,7 @@
 > [!CAUTION]
 > This is a Proof of Concept (PoC) developed for cybersecurity research and educational purposes only. The author does not promote any illegal use of this software and is not responsible for any misuse or damages caused by it.
 >
-> This script exploits a Living-Off-the-Land (LOTL) vulnerability in systems in which docker commands can be executed by non-privileged users.
+> This script exploits a LOTL (Living-Off-The-Land) vulnerability in systems in which docker commands can be executed by non-privileged users.
 
 ## Usage
 
