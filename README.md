@@ -21,3 +21,5 @@ python3 main.py
 In environments where non-privileged users are allowed to execute Docker commands, this can be abused to gain full control over the system.
 
 By creating a container with elevated access to host resources (mounting "/" on a container folder), an attacker is able to expose the host filesystem inside the container. Since processes running inside the container can execute with root privileges, the attacker could then interact with host files as a privileged user. Sensitive files, configuration files, user data, authentication mechanisms, or startup scripts could be viewed, modified, or replaced, leading to complete compromise of the machine.
+
+This concept was successfully exploited (manually) on EducaAndOS 20.04
